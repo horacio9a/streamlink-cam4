@@ -1,43 +1,37 @@
-cam4-anonymous
-====================
-cam4-anonymous lets you follow and archive your selected models' shows on www.cam4.com
-You don't need to be registered cam4 user for recording models with this cam4-anonymous script.
+# streamlink-cam4
+streamlink-cam4 lets you follow and archive your selected models shows on www.cam4.com.
+This streamlink-cam4 plugin that you see here use the C4_Model.txt where is a list of your favourites C4 models.
+You don't need to be registered cam4 user for recording models with this streamlink-cam4 plugin.
+I adapted existing streamlink plugin with a number of options.
 
 Requirements
 ============
-1. [Python 2.7.16](https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi) instalation. Those who need to install python should watch this [video](https://www.youtube.com/watch?v=QYUBz4mrnFU)
-2. [RTMPDump(ksv)](https://github.com/K-S-V/Scripts/releases) used for recording the streams.
-3. [ffmpeg and ffplay](https://ffmpeg.zeranoe.com/builds/) who must be somewere in the path, default location is 'C:/Windows'
-4. [youtube-dl](https://github.com/rg3/youtube-dl) who must be somewere in the path, default location is 'C:/Windows'
+1. Download here [Python 2.7.16](https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi) instalation. Those who need to install python should watch this [video](https://www.youtube.com/watch?v=QYUBz4mrnFU)
+2. Last version of [streamlink](https://github.com/streamlink/streamlink).
+3. Last version of [ffmpeg and ffplay](https://ffmpeg.zeranoe.com/builds/). Default location is C:/Windows, otherwise `config.cfg` must be edited.
+4. Last version of [youtube-dl](http://rg3.github.io/youtube-dl/download.html).
 
 Setup
 =====
-1. Install requirements `pip install -r Requirements.txt`
-2. Download and unpack the [code](https://codeload.github.com/horacio9a/cam4-anonymous/zip/master).
-3. Open console and go into the directory where you unpacked the files (default is C:/-c4-py/)
-4. c4.bat can be anywhere (default is C:/Windows)
-5. Edit `config.cfg` to your wish or accept default data.
+1. Install requirements `pip install -r Requirements.txt`. Streamlink can be installed as a stand-alone program but my recommendation is to install it as a python module along with other modules with command `pip install streamlink==0.9.0`
+2. Download and unpack the [code](https://codeload.github.com/horacio9a/streamlink-cam4/zip/master).
+3. C4 streamlink-cam4 plugin `cam4.py` must replace existing plugin in `C:/Python27/Lib/site-packages/streamlink/plugins/cam4.py`. It should be noted that cam4 can only be one plugin and therefore need to be renamed cam4_.py in cam4.py if you need 'online' version.
+4. Batch script `c4.bat` can be anywhere (default is `C:/Windows`).
+5. C4 favourite list `C4_Model.txt` can be anywhere (default is `C:/Windows`).
+6. `config.cfg` must be in `C:/Python27/Scripts/config.cfg`. Edit `config.cfg` depending on your situation or accept default data. You must enter the correct path on your computer for all the files that are there. In that case, those files do not have to be in the path.
 
 Running & Output
 ================
-It's best to use 'Command Promt' first to install `Requirements.txt`. You can also install the modules individually with the command 'pip install SomePackage==1.0.4 # specific version'
-For use these scripts it would be good to make a shortcut for `c4.bat` and put it in the task bar for easier startup. 
-All scripts using the same text file where is stored models for recordings, default is `C:\-c4-py\C4_Model.txt`. 
-However, if you want to record a certain model permanently (24/7), then you need to use `c4.bat`, options numbers 2 to 5 for start rtmpdump, youtube-dl, ffmpeg or streamlink.
-Default script is 'c4a.py' letter 'a' in the name means 'ALL' for 'all mode' record and play with hidden script traffic. 
-Script 'c4aw.py' letter 'w' in the name means 'window' allow you to see what is actually happening in a separate window and make it easier to stop recording.
-If you want to record more models at the same time then you need to start another copy of `c4.bat`. 
-All scripts have the ability to display some basic data about the models (Age, Location, Relationship Status and Occupation - Job).
-Break recording is with with Ctrl-C or by clicking 'x' at the top right corner of the script window If Ctrl-C does not react.
+It's best to use 'Command Promt' window to install `Requirements.txt`.
+For easier use of this plugin it would be good to make a shortcut and put it in the task bar for easier startup. 
+However, if you want to record a certain model permanently (24/7), then you need to use `c4.bat`, options number `1` and `0` for online use.
+For permanently 24/7 recording more than one model at the same time you need to start multiples copy of `c4.bat`. 
+Recording is best abort with Ctrl-C or by clicking 'x' at the top right corner of the script window if Ctrl-C does not react.
 
-screenshot0:
+The look of the default `cam4.py` for 24/7 permanent one model tracking
 
 ![alt screenshot](./screenshot0.jpg)
 
-screenshot1:
+If you don't want to keep track of a specific model, then you can use `cam4_.py` (must be renamed to `cam4.py`) which has many options and it is possible to use the same script window to start many models.
 
 ![alt screenshot](./screenshot1.jpg)
-
-screenshot2:
-
-![alt screenshot](./screenshot2.jpg)
