@@ -2,160 +2,75 @@
 SETLOCAL EnableDelayedExpansion
 :START
 CLS
+SET n=0
+FOR /F "tokens=*" %%A IN (C:\Windows\C4_Model.txt) DO (
+SET /A n=n+1
+SET _fav!n!=%%A
+ECHO !n! %%A
+)
 ECHO.
-SET /P MODE=EXIT(6)  START(5)  C4YTR(4)  C4SLR(3)  C4FFR(2)  C4RR(1)  C4(0)(ENTER)(%MODE%): 
-IF "%MODE%"=="" GOTO C4
-IF "%MODE%"=="0" GOTO C4
-IF "%MODE%"=="1" GOTO C4RR
-IF "%MODE%"=="2" GOTO C4FFR
-IF "%MODE%"=="3" GOTO C4SLR
-IF "%MODE%"=="4" GOTO C4YTR
-IF "%MODE%"=="5" GOTO START
-IF "%MODE%"=="6" GOTO EXIT
-:C4
+SET /P MODEL=Select CAM4 Model (%M% %MODEL%): 
+FOR /L %%f IN (1,1,!n!) DO (
+IF /I '%MODEL%'=='%%f' SET M=%%f
+)
+SET n=0
+FOR /F "tokens=*" %%A IN (C:\Windows\C4_Model.txt) DO (
+SET /A n=n+1
+IF !n!==%M% SET MODEL=%%A
+)
 ECHO.
-CLS && ECHO #################################################
-ECHO ### C4 #####  P Y T H O N   R E C / P L A Y  ####
-ECHO #################################################
-cd C:/
+SET /P MODE=EXIT(3)  START(2)  C4-SL-R(24/7)(1)  C4-SL(0)(ENTER)(%MODE%): 
+IF "%MODE%"=="" GOTO C4-SL
+IF "%MODE%"=="0" GOTO C4-SL
+IF "%MODE%"=="1" GOTO C4-SL-R
+IF "%MODE%"=="2" GOTO START
+IF "%MODE%"=="3" GOTO EXIT
+:C4-SL
+ECHO.
+CLS && ECHO #####################################################
+ECHO ### C4-SL #####  R E C O R D I N G  -  C A M 4  #####
+SET hour=%time:~0,2%
+IF "%hour:~0,1%" == " " SET hour=0%hour:~1,1%
+SET NOW=%date:~4,2%%date:~7,2%%date:~10,4%-%hour%%time:~3,2%%time:~6,2%
+FOR /f "tokens=1-2 delims=/:" %%a IN ('time /t') DO (set mytime=%%a%%b)
+SET OUT_DIR=C:\Videos\Cam4\
+SET FILENAME=%MODEL%_C4_%NOW%.flv
+SET OUTPUT=%OUT_DIR%%FILENAME%
+SET FNAME=######## %FILENAME% ### %M% ##############################
+SET _FNAME_=%FNAME:~5,53%
+IF EXIST "%OUT_DIR%" (ECHO %_FNAME_%) ELSE (MD "%OUT_DIR%"
+ECHO %_FNAME_%)
+ECHO #####################################################
+ECHO.
 COLOR 0F
-cd -c4-py
-start python c4.py
-ECHO.
+cd/
+cd Python27/Scripts
+START STREAMLINK "https://www.cam4.com/%MODEL%/"
 PAUSE
 GOTO START
-:C4RR
+:C4-SL-R
 ECHO.
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-SET _fav!n!=%%A
-ECHO !n! %%A
-)
+CLS && ECHO #####################################################
+ECHO ### C4-SL-R ###  R E C O R D I N G  -  2 4 / 7  #####
+SET hour=%time:~0,2%
+IF "%hour:~0,1%" == " " SET hour=0%hour:~1,1%
+SET NOW=%date:~4,2%%date:~7,2%%date:~10,4%-%hour%%time:~3,2%%time:~6,2%
+FOR /f "tokens=1-2 delims=/:" %%a IN ('time /t') DO (set mytime=%%a%%b)
+SET OUT_DIR=C:\Videos\Cam4\
+SET FILENAME=%MODEL%_C4_%NOW%.flv
+SET OUTPUT=%OUT_DIR%%FILENAME%
+SET FNAME=######## %FILENAME% ### %M% ##############################
+SET _FNAME_=%FNAME:~5,53%
+IF EXIST "%OUT_DIR%" (ECHO %_FNAME_%) ELSE (MD "%OUT_DIR%"
+ECHO %_FNAME_%)
+ECHO #####################################################
 ECHO.
-SET /P MODEL=Choose C4 Model Name (%M% %MODEL%): 
-FOR /L %%f IN (1,1,!n!) DO (
-IF /I '%MODEL%'=='%%f' SET M=%%f
-)
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-IF !n!==%M% SET MODEL=%%A
-)
-:C4RR_
-ECHO.
-SET MODELNAME=%MODEL% ############ %M% ############################
-SET _MODEL_=%MODELNAME:~0,33%
-ECHO.
-CLS && ECHO #################################################
-ECHO ### C4RR ###### P Y T H O N   R E C #### 24/7 ###
-ECHO ### RTMP ###### %_MODEL_%
-ECHO #################################################
-cd C:/
 COLOR 0F
-cd -c4-py
-python c4rr.py %MODEL%
+cd/
+cd Python27/Scripts
+STREAMLINK "https://www.cam4.com/%MODEL%/"
 TIMEOUT 30
-GOTO C4RR_
-:C4FFR
-ECHO.
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-SET _fav!n!=%%A
-ECHO !n! %%A
-)
-ECHO.
-SET /P MODEL=Choose C4 Model Name (%M% %MODEL%): 
-FOR /L %%f IN (1,1,!n!) DO (
-IF /I '%MODEL%'=='%%f' SET M=%%f
-)
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-IF !n!==%M% SET MODEL=%%A
-)
-:C4FFR_
-ECHO.
-SET MODELNAME=%MODEL% ############ %M% ############################
-SET _MODEL_=%MODELNAME:~0,33%
-ECHO.
-CLS && ECHO #################################################
-ECHO ### C4FFR ##### P Y T H O N   R E C #### 24/7 ###
-ECHO ### FFMPEG #### %_MODEL_%
-ECHO #################################################
-cd C:/
-COLOR 0F
-cd -c4-py
-python c4ffr.py %MODEL%
-TIMEOUT 30
-GOTO C4FFR_
-:C4SLR
-ECHO.
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-SET _fav!n!=%%A
-ECHO !n! %%A
-)
-ECHO.
-SET /P MODEL=Choose C4 Model Name (%M% %MODEL%): 
-FOR /L %%f IN (1,1,!n!) DO (
-IF /I '%MODEL%'=='%%f' SET M=%%f
-)
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-IF !n!==%M% SET MODEL=%%A
-)
-:C4SLR_
-ECHO.
-SET MODELNAME=%MODEL% ############ %M% ############################
-SET _MODEL_=%MODELNAME:~0,33%
-ECHO.
-CLS && ECHO #################################################
-ECHO ### C4SLR ##### P Y T H O N   R E C #### 24/7 ###
-ECHO ### SL ######## %_MODEL_%
-ECHO #################################################
-cd C:/
-COLOR 0F
-cd -c4-py
-python c4slr.py %MODEL%
-TIMEOUT 30
-GOTO C4SLR_
-:C4YTR
-ECHO.
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-SET _fav!n!=%%A
-ECHO !n! %%A
-)
-ECHO.
-SET /P MODEL=Choose C4 Model Name (%M% %MODEL%): 
-FOR /L %%f IN (1,1,!n!) DO (
-IF /I '%MODEL%'=='%%f' SET M=%%f
-)
-SET n=0
-FOR /F "tokens=*" %%A IN (C:/Windows/C4_Model.txt) DO (
-SET /A n=n+1
-IF !n!==%M% SET MODEL=%%A
-)
-:C4YTR_
-ECHO.
-SET MODELNAME=%MODEL% ############ %M% ############################
-SET _MODEL_=%MODELNAME:~0,33%
-ECHO.
-CLS && ECHO #################################################
-ECHO ### C4YTR ##### P Y T H O N   R E C #### 24/7 ###
-ECHO ### YTDL ###### %_MODEL_%
-ECHO #################################################
-cd C:/
-COLOR 0F
-cd -c4-py
-python c4ytr.py %MODEL%
-TIMEOUT 30
-GOTO C4YTR_
+GOTO C4-SL-R
 :EXIT
 GOTO :EOF
 ENDLOCAL
