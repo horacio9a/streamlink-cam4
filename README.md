@@ -34,9 +34,10 @@ However, if you want to record a certain model permanently (24/7), then you need
 For permanently 24/7 recording more than one model at the same time you need to start multiples copy of `c4.bat`. 
 For stop recording use Ctrl-C or by clicking 'x' at the top right corner of the script window if Ctrl-C does not work.
 For a better view you can replace the file 'progress.py' in the streamlink and livestreamer installation 
-(C:\Program Files (x86)\Streamlink\pkgs\streamlink_cli\utils\progress.py) => progress_211
-(C:\Python27\Lib\site-packages\streamlink_cli\utils\progress.py) => progress_170
-(C:\Python27\Lib\site-packages\livestreamer_cli\utils\progress.py) => progress_170
+
+`C:\Program Files (x86)\Streamlink\pkgs\streamlink_cli\utils\progress.py => progress_211`
+`C:\Python27\Lib\site-packages\streamlink_cli\utils\progress.py          => progress_170`
+`C:\Python27\Lib\site-packages\livestreamer_cli\utils\progress.py        => progress_170`
 
 The initial layout of the `c4.bat` script
 
