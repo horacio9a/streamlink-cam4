@@ -35,18 +35,15 @@ For permanently 24/7 recording more than one model at the same time you need to 
 For stop recording use Ctrl-C or by clicking 'x' at the top right corner of the script window if Ctrl-C does not work.
 For a better view you can replace the file 'progress.py' in the streamlink and livestreamer installation 
 
-`C:\Program Files (x86)\Streamlink\pkgs\streamlink_cli\utils\progress.py => progress_211`
-`C:\Python27\Lib\site-packages\streamlink_cli\utils\progress.py          => progress_170`
-`C:\Python27\Lib\site-packages\livestreamer_cli\utils\progress.py        => progress_170`
+1. `C:\Program Files (x86)\Streamlink\pkgs\streamlink_cli\utils\progress.py => progress_211`
+2. `C:\Python27\Lib\site-packages\streamlink_cli\utils\progress.py          => progress_170`
+3. `C:\Python27\Lib\site-packages\livestreamer_cli\utils\progress.py        => progress_170`
 
-The initial layout of the `c4.bat` script
-
+The initial layout of the `c4.bat` script:
 ![alt screenshot](./screenshot0.jpg)
 
-The look of the default `cam4_247.py` (must be renamed to `cam4.py`) for 24/7 permanent one model tracking
-
+The look of the default `cam4_247.py` (must be renamed to `cam4.py`) for 24/7 permanent one model tracking:
 ![alt screenshot](./screenshot1.jpg)
 
-If you don't want to keep track of a specific model, then you can use `cam4_mm.py` (must be renamed to `cam4.py`) which has many options and it is possible to use the same script window to start many models.
-
+If you don't want to keep track of a specific model, then you can use `cam4_mm.py` (must be renamed to `cam4.py`) which has many options and it is possible to use the same script window to start many models.:
 ![alt screenshot](./screenshot2.jpg)
