@@ -7,26 +7,19 @@ I adapted existing new streamlink plugin in two versions like before.
 The first version is `cam4_247.py` for 24/7 recording of your favorite performer.
 The second version is `cam4_mm.py` for online multi mode recording (ffmpeg, streamlink, livestream or youtube-dl)
 Attention, both files should be renamed to `cam.py` and moved to the directory `C:\Python27\Lib\site-packages\streamlink\plugins\`
-
-Requirements
-============
-1. Download here [Python 2.7.18](https://www.python.org/ftp/python/2.7.18/python-2.7.18.msi) instalation. Those who need to install python should watch this [video](https://www.youtube.com/watch?v=QYUBz4mrnFU)
-2. Last version of [streamlink](https://github.com/streamlink/streamlink).
-3. Last version of [ffmpeg and ffplay](https://ffmpeg.zeranoe.com/builds/). Default location is C:/Windows, otherwise `config.ini` must be edited.
-4. Last version of [youtube-dl](http://rg3.github.io/youtube-dl/download.html).
+Now it is possible to look at a certain model first and when we decide to record it is necessary to stop the 'preview' with Ctrl-C and then a menu with various options for recording or exit appears.
 
 Requirements
 ============
 1. [Python 2.7.18](https://www.python.org/ftp/python/2.7.18/python-2.7.18.msi)
 2. [Livestreamer](https://github.com/chrippa/livestreamer/releases) last version is 1.12.2
-3. [Streamlink](https://github.com/streamlink/streamlink/releases) last version for Python27 is 1.7.0 but you can install also last version independently in in `streamlink: "C:/Program Files (x86)/Streamlink/bin/streamlink.exe"`
+3. [Streamlink](https://github.com/streamlink/streamlink/releases) last version for Python27 is 1.7.0 but you can install also last version independently in in `C:/Program Files (x86)/Streamlink/bin/streamlink.exe`
 4. [ffmpeg & ffplay](https://ffmpeg.zeranoe.com/builds/) It is recommended to install the latest version, default location is `C:/Windows`
 5. [youtube-dl](https://github.com/rg3/youtube-dl) who must be somewere in the path, default location is `C:/Windows`
 
-
 Setup
 =====
-1. Install requirements `pip install -r Requirements.txt`. Streamlink can be installed as a stand-alone program but my recommendation is to install it as a python module along with other modules with command `pip install streamlink==0.9.0`
+1. Install requirements `pip install -r Requirements.txt` or better one by one like this example `pip install streamlink==1.7.0`
 2. Download and unpack the [code](https://codeload.github.com/horacio9a/streamlink-cam4/zip/master).
 3. C4 streamlink-cam4 plugin `cam4.py` must replace existing plugin in `C:/Python27/Lib/site-packages/streamlink/plugins/cam4.py`. It should be noted that cam4 can only be one plugin and therefore need to be renamed cam4_.py in cam4.py if you need 'online' version.
 4. Batch script `c4.bat` can be anywhere (default is `C:/Windows`).
@@ -40,6 +33,10 @@ For easier use of this plugin it would be good to make a shortcut and put it in 
 However, if you want to record a certain model permanently (24/7), then you need to use `c4.bat`, options number `1` and `0` for online multi mode use.
 For permanently 24/7 recording more than one model at the same time you need to start multiples copy of `c4.bat`. 
 For stop recording use Ctrl-C or by clicking 'x' at the top right corner of the script window if Ctrl-C does not work.
+For a better view you can replace the file 'progress.py' in the streamlink and livestreamer installation 
+(C:\Program Files (x86)\Streamlink\pkgs\streamlink_cli\utils\progress.py) => progress_211
+(C:\Python27\Lib\site-packages\streamlink_cli\utils\progress.py) => progress_170
+(C:\Python27\Lib\site-packages\livestreamer_cli\utils\progress.py) => progress_170
 
 The initial layout of the `c4.bat` script
 
