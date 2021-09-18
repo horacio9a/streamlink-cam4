@@ -3,6 +3,8 @@
 
 import os, sys, re, time, command
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from streamlink.plugin import Plugin
 from streamlink.plugin.api import validate
 from streamlink.stream import HLSStream
