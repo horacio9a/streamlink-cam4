@@ -3,6 +3,8 @@
 
 import os, sys, re, time, command
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from streamlink.plugin import Plugin
 from streamlink.plugin.api import validate
 from streamlink.stream import HLSStream
@@ -107,7 +109,6 @@ class Cam4(Plugin):
                     except ValueError:
                        print
                        print(colored(' => Input must be a number <=', 'white', 'on_red'))
-                       print
                  if prog > 5:
                     print
                     print(colored(' => Too big number <=', 'white', 'on_red'))
